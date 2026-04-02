@@ -1,10 +1,15 @@
 
 services:
   db:
-    image: postgres:18
+    image: postgres:16
+    container_name: flash-sale-db
     ports:
       - "5433:5432"
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
       POSTGRES_DB: flash_sale
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:

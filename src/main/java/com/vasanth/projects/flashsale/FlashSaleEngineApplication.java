@@ -11,6 +11,7 @@ import com.vasanth.projects.flashsale.Repository.ProductRepository;
 public class FlashSaleEngineApplication {
 
     public static void main(String[] args) {
+        java.util.TimeZone.setDefault(java.util.TimeZone.getTimeZone("Asia/Kolkata"));
         SpringApplication.run(FlashSaleEngineApplication.class, args);
 
     }
@@ -20,11 +21,12 @@ public class FlashSaleEngineApplication {
         return args -> {
             repository.deleteAll();
             Product product = new Product();
-            product.setProductId(1L);
             product.setProductName("Limited Edition Sneaker");
             product.setInventoryCount(50L);
             repository.save(product);
-            System.out.println("Test Product inserted with 50 inventory.");
+            System.out.println("=================================================");
+            System.out.println("Test Product inserted with ID: " + product.getProductId());
+            System.out.println("=================================================");
         };
     }
 }

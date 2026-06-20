@@ -20,18 +20,25 @@ public class FlashSaleEngineApplication {
     @Bean
     public CommandLineRunner initData(ProductRepository repository, StringRedisTemplate redisTemplate) {
         return args -> {
-
+            // 1. Clear old data
             repository.deleteAll();
+
+            // 2. Create and save the product (Postgres generates the ID)
             Product product = new Product();
             product.setProductName("Limited Edition Sneaker");
             product.setProductPrice(199L);
             product.setInventoryCount(50L);
-            repository.save(product);
+            // We must capture the saved instance to get the actual generated ID
+            Product savedProduct = repository.save(product);
+            Long actualId = savedProduct.getProductId();
 
-            redisTemplate.opsForValue().set("product:1:stock", "50");
+            // 3. Dynamically inject the correct ID into the Redis key
+            String dynamicRedisKey = "product:" + actualId + ":stock";
+            redisTemplate.opsForValue().set(dynamicRedisKey, "5");
+
             System.out.println("=================================================");
-            System.out.println("Test Product inserted with ID: " + product.getProductId());
-            System.out.println("System Initialized: Postgres has 50 items. Redis has 50 items.");
+            System.out.println("Test Product inserted with ID: " + actualId);
+            System.out.println("Seeded Redis Key: '" + dynamicRedisKey + "' with 5 items.");
             System.out.println("=================================================");
         };
     }

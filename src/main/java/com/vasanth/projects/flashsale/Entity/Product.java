@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "product")
 public class Product {
 
-    public Product(Long productId, String productName, String productPrice, Long inventoryCount) {
+    public Product(Long productId, String productName, Long productPrice, Long inventoryCount) {
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
@@ -17,7 +17,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
     private String productName;
-    private String productPrice;
+    private Long productPrice;
     private Long inventoryCount;
 
     public Product() {
@@ -40,11 +40,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public String getProductPrice() {
+    public Long getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(Long productPrice) {
         this.productPrice = productPrice;
     }
 

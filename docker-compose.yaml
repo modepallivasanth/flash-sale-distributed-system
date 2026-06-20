@@ -11,5 +11,12 @@ services:
       POSTGRES_DB: flash_sale
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: flash-sale-redis
+    ports:
+      - "6379:6379"
 volumes:
   pgdata:
+    

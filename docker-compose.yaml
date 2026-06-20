@@ -17,6 +17,13 @@ services:
     container_name: flash-sale-redis
     ports:
       - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: flash-sale-rabbitmq
+    ports:
+      - "5672:5672"   # The port Spring Boot uses to talk to RabbitMQ
+      - "15672:15672" # The port for the Web UI Dashboard
 volumes:
   pgdata:
     

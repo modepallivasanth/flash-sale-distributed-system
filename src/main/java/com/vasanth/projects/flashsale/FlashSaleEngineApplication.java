@@ -34,12 +34,12 @@ public class FlashSaleEngineApplication {
 
             // 3. Dynamically inject the correct ID into the Redis key
             String dynamicRedisKey = "product:" + actualId + ":stock";
-            redisTemplate.opsForValue().set(dynamicRedisKey, "5");
+            redisTemplate.opsForValue().set(dynamicRedisKey, "50");
 
-            System.out.println("=================================================");
-            System.out.println("Test Product inserted with ID: " + actualId);
-            System.out.println("Seeded Redis Key: '" + dynamicRedisKey + "' with 5 items.");
-            System.out.println("=================================================");
+//            System.out.println("=================================================");
+              System.out.println("Test Product inserted with ID: " + actualId);
+              System.out.println("Seeded Redis Key: '" + dynamicRedisKey + "' with 50 items.");
+//            System.out.println("=================================================");
         };
     }
 }

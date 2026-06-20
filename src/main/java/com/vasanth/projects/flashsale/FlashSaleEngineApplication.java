@@ -20,6 +20,7 @@ public class FlashSaleEngineApplication {
     @Bean
     public CommandLineRunner initData(ProductRepository repository, StringRedisTemplate redisTemplate) {
         return args -> {
+
             repository.deleteAll();
             Product product = new Product();
             product.setProductName("Limited Edition Sneaker");
